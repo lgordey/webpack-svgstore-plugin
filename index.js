@@ -143,10 +143,14 @@ WebpackSvgStore.prototype.apply = function(compiler) {
 
       compilation.plugin('optimize-chunk-assets', function(chunks, callback) {
         chunks.forEach(function(chunk) {
-          if (options.entryOnly && !chunk.initial) return;
-          chunk.files.filter(ModuleFilenameHelpers.matchObject.bind(undefined, options)).forEach(function(file) {
-            compilation.assets[file] = new ConcatSource(utils.svgXHR(hash), '\n', compilation.assets[file]);
-          });
+          // change 'aplication' with options.entry or smth
+          if (options.entryOnly && !chunk.initial && chunk.name !== 'application') return;
+
+          if (chunk.name === 'application') {
+            chunk.files.filter(ModuleFilenameHelpers.matchObject.bind(undefined, options)).forEach(function(file) {
+              compilation.assets[file] = new ConcatSource(utils.svgXHR(hash), '\n', compilation.assets[file]);
+            });
+          }
         });
         callback();
       });
