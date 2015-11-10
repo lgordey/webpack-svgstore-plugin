@@ -23,7 +23,7 @@ module.exports = function(_path) {
       extensions: ['', '.js'],
     },
     plugins: [
-      new SvgStore(path.join(sourcePath, 'min'), path.join(distPath, 'svg'), {
+      new SvgStore(path.join(sourcePath, 'svg'), path.join(distPath, 'svg'), {
         name: '[hash].sprite.svg',
         ajaxWrapper: {
           name: '[hash].svgxhr.js'
