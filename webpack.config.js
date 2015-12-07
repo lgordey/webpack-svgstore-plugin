@@ -6,7 +6,7 @@
  */
 var _configs = {
   // global section
-  platform: require(__dirname + '/platform/global')
+  example: require(__dirname + '/example/global')
 };
 
 /**
